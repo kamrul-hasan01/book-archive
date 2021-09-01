@@ -13,6 +13,32 @@
 
 <body>
 
+
+    <section>
+        <h1 class="text-center my-4">Search your favourite book</h1>
+        <div class="input-group mb-3 w-50 mx-auto">
+            <input type="text" id="input-feild" class="form-control" placeholder="Enter your book name"
+                aria-label="Recipient's username" aria-describedby="button-addon2">
+            <button onclick="bookSearch()" class="btn btn-outline-secondary" type="button" id="button">Search</button>
+        </div>
+
+
+    </section>
+
+    <!-- showing result  -->
+
+    <section class="container">
+        <p id="error-message" class="text-danger text-center"> No book found </p>
+        <h1 id="result-section" class="text-center">Founded books : <span id="total-found"></span> </h1>
+        <div id="book-container" class="row row-cols-1 row-cols-md-3 g-4">
+
+
+
+
+
+
+        </div>
+    </section>
     <script src="javaScript.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

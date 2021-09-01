@@ -19,7 +19,8 @@
         <div class="input-group mb-3 w-50 mx-auto">
             <input type="text" id="input-feild" class="form-control" placeholder="Enter your book name"
                 aria-label="Recipient's username" aria-describedby="button-addon2">
-            <button onclick="bookSearch()" class="btn btn-outline-secondary" type="button" id="button">Search</button>
+            <button onclick="bookSearch()" class="bg-danger btn btn-outline-secondary text-white" type="button"
+                id="button">Search</button>
         </div>
 
 
@@ -28,6 +29,12 @@
     <!-- showing result  -->
 
     <section class="container">
+
+        <div class="d-flex justify-content-center">
+            <div id="spinner" class="spinner-border text-info" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
         <p id="error-message" class="text-danger text-center"> No book found </p>
         <h1 id="result-section" class="text-center">Founded books : <span id="total-found"></span> </h1>
         <div id="book-container" class="row row-cols-1 row-cols-md-3 g-4">

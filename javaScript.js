@@ -1,13 +1,28 @@
-document.getElementById('result-section').style.display = 'none';
-document.getElementById('error-message').style.display = 'none';
+const searchResult = (id, disp) => {
+    document.getElementById(id).style.display = disp;
+}
+
+// document.getElementById('result-section').style.display = 'none';
+// document.getElementById('error-message').style.display = 'none';
+// document.getElementById('spinner').style.display = 'none';
+searchResult('result-section', 'none');
+searchResult('error-message', 'none');
+searchResult('spinner', 'none');
+
 const bookSearch = () => {
 
     const inputFeild = document.getElementById('input-feild');
     const inputValue = inputFeild.value;
     inputFeild.value = '';
-    document.getElementById('result-section').style.display = 'none';
-    document.getElementById('error-message').style.display = 'none';
+    searchResult('result-section', 'none');
+    searchResult('error-message', 'none');
+
+    // document.getElementById('result-section').style.display = 'none';
+    // document.getElementById('error-message').style.display = 'none';
+
     document.getElementById('book-container').innerHTML = ''
+    searchResult('spinner', 'block');
+    // document.getElementById('spinner').style.display = 'block';
 
     const url = `http://openlibrary.org/search.json?q=${inputValue}`;
 
@@ -26,11 +41,17 @@ const displayData = data => {
 
     const totalFound = document.getElementById('total-found');
     totalFound.innerText = data.numFound
+    // document.getElementById('spinner').style.display = 'none';
+    searchResult('spinner', 'none');
+
+
     if (data.numFound !== 0) {
-        document.getElementById('result-section').style.display = 'block';
+        // document.getElementById('result-section').style.display = 'block';
+        searchResult('result-section', 'block');
+
         const result = data.docs
 
-        console.log(result)
+        // console.log(result)
         const bookContainer = document.getElementById('book-container')
         result.forEach(element => {
             // console.log(element.cover_i)
@@ -41,7 +62,7 @@ const displayData = data => {
                 <img src="https://covers.openlibrary.org/b/id/${element.cover_i}-M.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">${element.title}</h5>
-                    <p class="card-text">${element.author_name} <br>${element.first_publish_year}</p>
+                    <p class="card-text">${element.author_name} <br>${element.first_publish_year ? element.first_publish_year : 'Not available'}</p>
                 </div>
           
         </div>
@@ -51,7 +72,9 @@ const displayData = data => {
         });
 
     } else {
-        document.getElementById('error-message').style.display = 'block';
+        // document.getElementById('error-message').style.display = 'block';
+        searchResult('error-message', 'block');
+
     }
 
 

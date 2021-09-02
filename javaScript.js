@@ -30,13 +30,18 @@ const displayData = data => {
 
     if (data.numFound !== 0) {
         document.getElementById('result-section').style.display = 'block';
-        const bookContainer = document.getElementById('book-container')
+        const bookContainer = document.getElementById('book-container');
         data.docs.forEach(element => {
-            const div = document.createElement('div')
-            div.classList.add('col')
+            let coverImgUrl = `https://covers.openlibrary.org/b/id/${element.cover_i}-M.jpg`;
+            if (element.cover_i === undefined) {
+                coverImgUrl = `pic.jpg`;
+            }
+
+            const div = document.createElement('div');
+            div.classList.add('col');
             div.innerHTML = `<div class="card h-100">
            
-                <img src="https://covers.openlibrary.org/b/id/${element.cover_i}-M.jpg" class=" p-3" style="height:300px;"  alt="Pic not found">
+                <img src="${coverImgUrl}" class=" p-3" style="height:300px;"  alt="Pic not found">
                 <div class="card-body">
                    
                     <h5 class="card-title">${element.title}</h5>

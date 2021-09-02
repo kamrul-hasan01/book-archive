@@ -12,10 +12,8 @@
 </head>
 
 <body>
-
-
-    <section>
-        <h1 class="text-center my-4">Search your favourite book</h1>
+    <section class="container">
+        <h1 class="text-center my-4 ">Search your favourite <span class="text-info"> books</span></h1>
         <div class="input-group mb-3 w-50 mx-auto">
             <input type="text" id="input-feild" class="form-control" placeholder="Enter your book name"
                 aria-label="Recipient's username" aria-describedby="button-addon2">
@@ -24,26 +22,21 @@
         </div>
 
 
-    </section>
-
-    <!-- showing result  -->
-
-    <section class="container">
-
+        <!-- spinner  -->
         <div class="d-flex justify-content-center">
             <div id="spinner" class="spinner-border text-info" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
         </div>
-        <p id="error-message" class="text-danger text-center"> No book found </p>
-        <h1 id="result-section" class="text-center">Founded books : <span id="total-found"></span> </h1>
+
+        <!-- no book found  message  -->
+        <p id="no-book-found" class="text-danger text-center"> No book found </p>
+        <!-- total book found result  -->
+        <h3 id="result-section" class="text-center text-success my-4"><span id="total-found"></span> books
+            found </h3>
+
+        <!-- showing books  -->
         <div id="book-container" class="row row-cols-1 row-cols-md-3 g-4">
-
-
-
-
-
-
         </div>
     </section>
     <script src="javaScript.js"></script>
@@ -52,6 +45,5 @@
         crossorigin="anonymous"></script>
 
 </body>
-
 
 </html>

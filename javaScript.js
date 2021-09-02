@@ -1,83 +1,57 @@
-const searchResult = (id, disp) => {
-    document.getElementById(id).style.display = disp;
-}
-
-// document.getElementById('result-section').style.display = 'none';
-// document.getElementById('error-message').style.display = 'none';
-// document.getElementById('spinner').style.display = 'none';
-searchResult('result-section', 'none');
-searchResult('error-message', 'none');
-searchResult('spinner', 'none');
-
+document.getElementById('result-section').style.display = 'none';
+document.getElementById('no-book-found').style.display = 'none';
+document.getElementById('spinner').style.display = 'none';
+//   seaching book 
 const bookSearch = () => {
-
     const inputFeild = document.getElementById('input-feild');
     const inputValue = inputFeild.value;
     inputFeild.value = '';
-    searchResult('result-section', 'none');
-    searchResult('error-message', 'none');
 
-    // document.getElementById('result-section').style.display = 'none';
-    // document.getElementById('error-message').style.display = 'none';
+    document.getElementById('result-section').style.display = 'none';
+    document.getElementById('no-book-found').style.display = 'none';
 
     document.getElementById('book-container').innerHTML = ''
-    searchResult('spinner', 'block');
-    // document.getElementById('spinner').style.display = 'block';
+    //  showing spinner 
+    document.getElementById('spinner').style.display = 'block';
 
-    const url = `http://openlibrary.org/search.json?q=${inputValue}`;
-
+    const url = `https://openlibrary.org/search.json?q=${inputValue}`;
 
     fetch(url)
         .then(res => res.json())
         .then(data => displayData(data))
-
-
-
 }
 
+//  display all books 
 const displayData = data => {
-
-
-
-    const totalFound = document.getElementById('total-found');
-    totalFound.innerText = data.numFound
-    // document.getElementById('spinner').style.display = 'none';
-    searchResult('spinner', 'none');
-
+    //   total books founds 
+    document.getElementById('total-found').innerText = data.numFound
+    // spninner display none
+    document.getElementById('spinner').style.display = 'none';
 
     if (data.numFound !== 0) {
-        // document.getElementById('result-section').style.display = 'block';
-        searchResult('result-section', 'block');
-
-        const result = data.docs
-
-        // console.log(result)
+        document.getElementById('result-section').style.display = 'block';
         const bookContainer = document.getElementById('book-container')
-        result.forEach(element => {
-            // console.log(element.cover_i)
+        data.docs.forEach(element => {
             const div = document.createElement('div')
             div.classList.add('col')
-            div.innerHTML = `
-            <div class="card h-100">
-                <img src="https://covers.openlibrary.org/b/id/${element.cover_i}-M.jpg" class="card-img-top" alt="...">
+            div.innerHTML = `<div class="card h-100">
+           
+                <img src="https://covers.openlibrary.org/b/id/${element.cover_i}-M.jpg" class="h-50 p-3"  alt="Pic not found">
                 <div class="card-body">
+                   
                     <h5 class="card-title">${element.title}</h5>
-                    <p class="card-text">${element.author_name} <br>${element.first_publish_year ? element.first_publish_year : 'Not available'}</p>
+                    <h6 class="card-title"> Author:${element.author_name ? element.author_name : 'Author not found'}</h6>
+                    <p class="card-text">Publisher: <i>${element.publisher ? element.publisher : 'Publisher not found'}</i></p>
+                    <p class="card-text">First Published: ${element.first_publish_year ? element.first_publish_year : ' '}</p>
                 </div>
           
-        </div>
-        
-        `
+        </div>`
             bookContainer.appendChild(div);
         });
 
     } else {
-        // document.getElementById('error-message').style.display = 'block';
-        searchResult('error-message', 'block');
-
+        //   no books found result 
+        document.getElementById('no-book-found').style.display = 'block';
     }
-
-
-
 }
 

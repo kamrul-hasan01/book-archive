@@ -36,12 +36,12 @@ const displayData = data => {
             div.classList.add('col')
             div.innerHTML = `<div class="card h-100">
            
-                <img src="https://covers.openlibrary.org/b/id/${element.cover_i}-M.jpg" class="h-50 p-3"  alt="Pic not found">
+                <img src="https://covers.openlibrary.org/b/id/${element.cover_i}-M.jpg" class=" p-3" style="height:300px;"  alt="Pic not found">
                 <div class="card-body">
                    
                     <h5 class="card-title">${element.title}</h5>
                     <h6 class="card-title"> Author:${element.author_name ? element.author_name : 'Author not found'}</h6>
-                    <p class="card-text">Publisher: <i>${element.publisher ? element.publisher : 'Publisher not found'}</i></p>
+             
                     <p class="card-text">First Published: ${element.first_publish_year ? element.first_publish_year : ' '}</p>
                 </div>
           
@@ -54,4 +54,3 @@ const displayData = data => {
         document.getElementById('no-book-found').style.display = 'block';
     }
 }
-
